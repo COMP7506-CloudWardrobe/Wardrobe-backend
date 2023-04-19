@@ -5,13 +5,13 @@
 <mapper namespace="com.example.demo.mapper.AccountMapper">
 
     <!-- 插入新用户信息 -->
-    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user (userName, email, password) VALUES (#{userName}, #{email}, #{password})
+    <insert id="insertAccount" parameterType="com.example.demo.domain.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO User (userName, email, password) VALUES (#{userName}, #{email}, #{password})
     </insert>
 
 
-    <select id="findByEmail" parameterType="String" resultMap="User">
-        SELECT * FROM account WHERE email = #{email}
+    <select id="findByEmail" parameterType="String" resultMap="com.example.demo.domain.User">
+        SELECT * FROM User WHERE email = #{email}
     </select>
 
 
