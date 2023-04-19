@@ -17,7 +17,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String login(String email, String password) {
+        System.out.println(email);
         User user = accountMapper.findByEmail(email);
+        System.out.println(user);
         if (user == null || !user.getPassword().equals(password)) {
             return null;
         }

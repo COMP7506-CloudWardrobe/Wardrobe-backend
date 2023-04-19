@@ -10,7 +10,7 @@
     </insert>
 
 
-    <select id="findByEmail" parameterType="String" resultMap="com.example.demo.domain.User">
+    <select id="findByEmail" parameterType="String" resultType="com.example.demo.domain.User">
         SELECT * FROM User WHERE email = #{email}
     </select>
 
