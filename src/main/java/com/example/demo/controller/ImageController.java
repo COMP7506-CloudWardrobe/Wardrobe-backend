@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.common.StringCommon;
+import com.example.demo.common.Common;
 import com.example.demo.config.StorageConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +29,7 @@ public class ImageController {
         Path path = Paths.get(storageConfig.getBasePath())
                 .resolve(userId)
                 .resolve(storageConfig.getClothesPath())
-                .resolve(clothesId + StringCommon.JPG);
+                .resolve(clothesId + Common.JPG);
 
         if (Files.exists(path)) {
             byte[] imageBytes = Files.readAllBytes(path);

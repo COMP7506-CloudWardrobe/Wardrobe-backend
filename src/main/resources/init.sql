@@ -36,16 +36,28 @@ CREATE INDEX `idx_user_id` ON `Clothes` (`userId`);
 INSERT INTO `Clothes` (`userId`, `type`)
 VALUES (1, 1);
 
+INSERT INTO `Clothes` (`userId`, `type`)
+VALUES (1, 2);
+
+drop table `Suits`;
 CREATE TABLE `Suits`
 (
-    `suitsId`     INT(11) NOT NULL AUTO_INCREMENT,
+    `suitId`     INT(11) NOT NULL AUTO_INCREMENT,
     `userId`      INT(11) NOT NULL,
-    `clothesJSON` VARCHAR(255),
-    PRIMARY KEY (`suitsId`),
+    `topId`       INT(11),
+    `bottomId`    INT(11),
+    `onePieceId`  INT(11),
+    `shoesId`     INT(11),
+    `accessoryId` INT(11),
+    PRIMARY KEY (`suitId`),
     FOREIGN KEY (`userId`) REFERENCES `User` (`userId`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
+
+INSERT INTO `Suits` (`userId`, `topId`, `bottomId`, `onePieceId`, `shoesId`, `accessoryId`)
+VALUES (1, 1, 2, null, null, null);
+
 
 CREATE INDEX `idx_user_id` ON `Suits` (`userId`);
 
