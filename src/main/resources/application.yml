@@ -1,0 +1,4 @@
+store:
+  basePath: "/Users/celiaf/Documents/HKU/SAD/backend/images"
+  clothesPath: "clothes"
+  suitsPath: "suits"
