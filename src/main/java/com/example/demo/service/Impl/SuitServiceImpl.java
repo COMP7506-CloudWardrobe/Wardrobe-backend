@@ -23,5 +23,16 @@ public class SuitServiceImpl implements SuitService {
     public List<Suit> getSuits(Integer id) {
         return suitMapper.findByUserId(id);
     }
+
+    @Override
+    public Long uploadSuit(Suit suit) {
+        System.out.println(suit);
+        suitMapper.insertSuit(suit);
+        return suit.getSuitId();
+    }
+
+    public Long deleteSuit(Long suitId, Long userId) {
+        return suitMapper.deleteSuit(suitId, userId);
+    }
 }
 

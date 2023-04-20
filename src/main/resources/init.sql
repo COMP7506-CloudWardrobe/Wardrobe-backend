@@ -39,7 +39,6 @@ VALUES (1, 1);
 INSERT INTO `Clothes` (`userId`, `type`)
 VALUES (1, 2);
 
-drop table `Suits`;
 CREATE TABLE `Suits`
 (
     `suitId`     INT(11) NOT NULL AUTO_INCREMENT,

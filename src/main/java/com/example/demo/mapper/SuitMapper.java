@@ -12,4 +12,7 @@ public interface SuitMapper {
 
     List<Suit> findByUserId(@Param("id") Integer userId);
 
+    void insertSuit(@Param("suit") Suit suit);
+
+    Long deleteSuit(@Param("suitId") Long suitId, @Param("userId") Long userId);
 }

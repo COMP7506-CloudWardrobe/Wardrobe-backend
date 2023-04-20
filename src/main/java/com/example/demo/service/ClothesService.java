@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ClothesService {
     List<List<Clothes>> getClothes(Integer id);
+
+    Long uploadClothes(Clothes clothes);
+
+    Long deleteClothes(Long clothesId, Long userId);
 }

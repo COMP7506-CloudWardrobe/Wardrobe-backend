@@ -13,4 +13,8 @@ public interface ClothesMapper {
 
     List<Clothes> findByUserId(@Param("id") Integer userId);
 
+    void insertClothes(@Param("clothes") Clothes clothes);
+
+    Long deleteClothes(@Param("clothesId") Long clothesId, @Param("userId") Long userId);
+
 }

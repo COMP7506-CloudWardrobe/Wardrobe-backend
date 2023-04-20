@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class ClothesVO {
+public class ClothesWardrobeVO {
     List<Clothes> tops;
     List<Clothes> bottoms;
     List<Clothes> one_pieces;

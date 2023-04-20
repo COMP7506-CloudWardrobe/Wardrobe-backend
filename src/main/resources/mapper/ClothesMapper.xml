@@ -5,8 +5,23 @@
 <mapper namespace="com.example.demo.mapper.ClothesMapper">
 
     <select id="findByUserId" parameterType="Integer" resultType="com.example.demo.domain.Clothes">
-        SELECT * FROM Clothes WHERE userId = #{id}
+        SELECT *
+        FROM Clothes
+        WHERE userId = #{id}
     </select>
+
+    <insert id="insertClothes" parameterType="com.example.demo.domain.Clothes" useGeneratedKeys="true"
+            keyProperty="clothesId">
+        insert into Clothes (userId, type)
+        VALUES (#{clothes.userId}, #{clothes.type})
+    </insert>
+
+    <delete id="deleteClothes" parameterType="Long">
+        delete
+        from Clothes
+        where userId = #{userId}
+          and clothesId = #{clothesId}
+    </delete>
 
 
 </mapper>

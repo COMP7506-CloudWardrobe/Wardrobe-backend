@@ -10,5 +10,19 @@
         WHERE userId = #{id}
     </select>
 
+    <insert id="insertSuit" parameterType="com.example.demo.domain.Suit" useGeneratedKeys="true"
+            keyProperty="suitId">
+        insert into Suits (userId, topId, bottomId, onePieceId, shoesId, accessoryId)
+        VALUES (#{suit.userId}, #{suit.topId}, #{suit.bottomId}, #{suit.onePieceId}, #{suit.shoesId},
+                #{suit.accessoryId})
+    </insert>
+
+    <delete id="deleteSuit" parameterType="Long">
+        delete
+        from Suits
+        where userId = #{userId}
+          and suitId = #{suitId}
+    </delete>
+
 
 </mapper>

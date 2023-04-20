@@ -11,6 +11,4 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class StorageConfig {
     String basePath;
-    String clothesPath;
-    String suitsPath;
 }

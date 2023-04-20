@@ -1,7 +1,5 @@
 store:
   basePath: "/Users/celiaf/Documents/HKU/SAD/backend/images"
-  clothesPath: "clothes"
-  suitsPath: "suits"
 
 spring:
   datasource:
@@ -12,3 +10,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
