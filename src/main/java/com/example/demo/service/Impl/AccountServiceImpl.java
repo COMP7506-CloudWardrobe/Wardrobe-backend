@@ -1,6 +1,7 @@
 package com.example.demo.service.Impl;
 
 import com.example.demo.domain.User;
+import com.example.demo.domain.vo.UserLoginVO;
 import com.example.demo.mapper.AccountMapper;
 import com.example.demo.service.AccountService;
 //import jakarta.annotation.Resource;
@@ -16,37 +17,22 @@ public class AccountServiceImpl implements AccountService {
     private AccountMapper accountMapper;
 
     @Override
-    public String login(String email, String password) {
-        System.out.println(email);
-        User user = accountMapper.findByEmail(email);
-        System.out.println(user);
-        if (user == null || !user.getPassword().equals(password)) {
-            return null;
-        }
-        String accountToken = generateToken();
-//        user.setUserToken(accountToken);
-//        accountMapper.updateAccount(user);
-        return accountToken;
+    public User login(String email, String password) {
+        return accountMapper.findByEmail(email);
     }
 
     @Override
-    public String register(String email, String password, String userName) {
-        User user = accountMapper.findByEmail(email);
+    public User register(UserLoginVO vo) {
+        User user = accountMapper.findByEmail(vo.getEmail());
         if (user != null) {
             return null;
         }
         user = new User();
-        user.setUserName(userName);
-        user.setEmail(email);
-        user.setPassword(password);
-        String accountToken = generateToken();
+        user.setUserName(vo.getUserName());
+        user.setEmail(vo.getEmail());
+        user.setPassword(vo.getPassword());
         accountMapper.insertAccount(user);
-        return accountToken;
-    }
-
-    private String generateToken() {
-        // 生成token
-        return "tmp token";
+        return user;
     }
 }
 

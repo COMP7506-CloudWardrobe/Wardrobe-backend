@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.User;
+import com.example.demo.domain.vo.UserLoginVO;
+
 public interface AccountService {
-    String login(String email, String password);
-    String register(String email, String password, String userName);
+    User login(String email, String password);
+    User register(UserLoginVO userLoginVO);
 }
