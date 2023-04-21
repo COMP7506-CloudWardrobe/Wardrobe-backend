@@ -5,6 +5,7 @@ import com.example.demo.config.StorageConfig;
 import com.example.demo.domain.Clothes;
 import com.example.demo.domain.Suit;
 import com.example.demo.domain.vo.ClothesWardrobeVO;
+import com.example.demo.domain.vo.SuitWardrobeVO;
 import com.example.demo.service.ClothesService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.SuitService;
@@ -51,8 +52,9 @@ public class WardrobeController {
     }
 
     @GetMapping("/get_all_suits")
-    public ResponseEntity<List<Suit>> getAllSuits(@RequestParam int id) {
-        return new ResponseEntity<>(suitService.getSuits(id), HttpStatus.OK);
+    public ResponseEntity<SuitWardrobeVO> getAllSuits(@RequestParam int id) {
+        List<Suit> suitList = suitService.getSuits(id);
+        return new ResponseEntity<>(new SuitWardrobeVO().setSuitList(suitList), HttpStatus.OK);
     }
 
     @PostMapping("/upload_clothes")
