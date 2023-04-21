@@ -27,10 +27,10 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public Long uploadClothes(Clothes clothes) {
+    public Clothes uploadClothes(Clothes clothes) {
         System.out.println(clothes);
         clothesMapper.insertClothes(clothes);
-        return clothes.getClothesId();
+        return clothes;
     }
 
     @Override

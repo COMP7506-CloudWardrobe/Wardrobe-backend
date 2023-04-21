@@ -59,21 +59,20 @@ public class WardrobeController {
 
     @PostMapping("/upload_clothes")
     @Transactional
-    public ResponseEntity<Boolean> uploadClothes(@RequestParam MultipartFile image,
+    public ResponseEntity<Clothes> uploadClothes(@RequestParam MultipartFile image,
                                                  @RequestParam Long userId,
                                                  @RequestParam Integer type) throws IOException {
-        Long clothesId = clothesService.uploadClothes(new Clothes()
+        Clothes newClothes = clothesService.uploadClothes(new Clothes()
                 .setType(type)
                 .setUserId(userId));
 
         Path path = Paths.get(storageConfig.getBasePath())
                 .resolve(Common.USER + userId)
                 .resolve(Common.CLOTHES_DIR)
-//                .resolve(Common.CLOTHES_TYPES.get(type))/
-                .resolve(clothesId + Common.JPG);
+                .resolve(newClothes.getClothesId() + Common.JPG);
 
-        if (imageService.saveImage(path, image)) return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
-        else return new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
+        if (imageService.saveImage(path, image)) return new ResponseEntity<>(newClothes, HttpStatus.OK);
+        else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping("/upload_suit")
