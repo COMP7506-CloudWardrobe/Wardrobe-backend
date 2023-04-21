@@ -53,7 +53,7 @@ public class ImageController {
     @GetMapping("/get_suit_image")
     public ResponseEntity<byte[]> getSuitImage(@RequestParam String userId, @RequestParam int suitId) {
         Path path = Paths.get(storageConfig.getBasePath())
-                .resolve(userId)
+                .resolve(Common.USER + userId)
                 .resolve(Common.SUIT_DIR)
                 .resolve(suitId + Common.JPG);
 
