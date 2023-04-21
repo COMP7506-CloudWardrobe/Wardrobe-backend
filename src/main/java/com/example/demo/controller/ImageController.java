@@ -40,11 +40,10 @@ public class ImageController {
     }
 
     @GetMapping("/get_clothes_image")
-    public ResponseEntity<byte[]> getClothesImage(@RequestParam String userId, @RequestParam int clothesId, @RequestParam int clothesType) {
+    public ResponseEntity<byte[]> getClothesImage(@RequestParam String userId, @RequestParam int clothesId) {
         Path path = Paths.get(storageConfig.getBasePath())
-                .resolve(userId)
+                .resolve(Common.USER + userId)
                 .resolve(Common.CLOTHES_DIR)
-                .resolve(Common.CLOTHES_TYPES.get(clothesType))
                 .resolve(clothesId + Common.JPG);
 
         return getImageResponseEntity(path);
