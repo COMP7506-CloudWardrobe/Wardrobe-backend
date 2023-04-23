@@ -23,6 +23,7 @@ public class AccountController {
         userLoginVO.setEmail(email);
         userLoginVO.setPassword(password);
         userLoginVO.setUserId(user.getUserId());
+        userLoginVO.setUserName(user.getUserName());
         return ResponseEntity.ok(userLoginVO);
     }
 

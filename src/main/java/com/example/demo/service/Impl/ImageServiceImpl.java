@@ -43,5 +43,10 @@ public class ImageServiceImpl implements ImageService {
 //        throw new IOException();
         return true;
     }
+
+    @Override
+    public boolean deleteImage(Path path) throws IOException {
+        return new File(path.toUri()).delete();
+    }
 }
 

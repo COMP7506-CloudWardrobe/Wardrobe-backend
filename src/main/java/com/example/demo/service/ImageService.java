@@ -9,4 +9,6 @@ public interface ImageService {
     byte[] getImage(Path path);
 
     boolean saveImage(Path path, MultipartFile image) throws IOException;
+
+    boolean deleteImage(Path path) throws IOException;
 }

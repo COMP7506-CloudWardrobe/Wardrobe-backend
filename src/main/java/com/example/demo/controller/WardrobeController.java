@@ -102,13 +102,28 @@ public class WardrobeController {
     }
 
     @GetMapping("/delete_suit")
-    public ResponseEntity<Boolean> deleteSuit(@RequestParam Long suitId, @RequestParam Long userId) {
-        return new ResponseEntity<>(suitService.deleteSuit(suitId, userId) > 0, HttpStatus.OK);
+    public ResponseEntity<Boolean> deleteSuit(@RequestParam Long suitId, @RequestParam Long userId) throws IOException {
+        Path path = Paths.get(storageConfig.getBasePath())
+                .resolve(Common.USER + userId)
+                .resolve(Common.SUIT_DIR)
+                .resolve(suitId + Common.JPG);
+        if (suitService.deleteSuit(suitId, userId) > 0)
+            if (imageService.deleteImage(path))
+                return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        return new ResponseEntity<>(Boolean.FALSE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/delete_clothes")
-    public ResponseEntity<Boolean> deleteClothes(@RequestParam Long clothesId, @RequestParam Long userId) {
-        return new ResponseEntity<>(clothesService.deleteClothes(clothesId, userId) > 0, HttpStatus.OK);
+    public ResponseEntity<Boolean> deleteClothes(@RequestParam Long clothesId, @RequestParam Long userId) throws IOException {
+        Path path = Paths.get(storageConfig.getBasePath())
+                .resolve(Common.USER + userId)
+                .resolve(Common.CLOTHES_DIR)
+                .resolve(clothesId + Common.JPG);
+
+        if (clothesService.deleteClothes(clothesId, userId) > 0)
+            if (imageService.deleteImage(path))
+                return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        return new ResponseEntity<>(Boolean.FALSE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
