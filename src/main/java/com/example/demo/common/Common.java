@@ -1,7 +1,6 @@
 package com.example.demo.common;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public interface Common {
@@ -13,6 +12,6 @@ public interface Common {
 
     String SUIT_DIR = "suit";
 
-    List<String> CLOTHES_TYPES = Arrays.asList("tops", "bottoms", "one_pieces", "shoes", "accessories");
+    List<String> CLOTHES_TYPES = Arrays.asList("tops", "bottoms", "outwears", "shoes", "accessories");
     int CLOTHES_TYPE = CLOTHES_TYPES.size();
 }

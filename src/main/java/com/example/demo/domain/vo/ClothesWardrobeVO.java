@@ -11,7 +11,7 @@ import java.util.List;
 public class ClothesWardrobeVO {
     List<Clothes> tops;
     List<Clothes> bottoms;
-    List<Clothes> one_pieces;
+    List<Clothes> outwears;
     List<Clothes> shoes;
     List<Clothes> accessories;
 }

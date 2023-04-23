@@ -15,8 +15,8 @@ CREATE TABLE `User`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
 
-INSERT INTO `User` (`userName`, `email`, `password`)
-VALUES ('user1', 'user1@example.com', 'password1');
+# INSERT INTO `User` (`userName`, `email`, `password`)
+# VALUES ('user1', 'user1@example.com', 'password1');
 
 
 CREATE TABLE `Clothes`
@@ -33,29 +33,30 @@ CREATE TABLE `Clothes`
 CREATE INDEX `idx_user_id` ON `Clothes` (`userId`);
 
 
-INSERT INTO `Clothes` (`userId`, `type`)
-VALUES (1, 1);
-
-INSERT INTO `Clothes` (`userId`, `type`)
-VALUES (1, 2);
+# INSERT INTO `Clothes` (`userId`, `type`)
+# VALUES (1, 1);
+#
+# INSERT INTO `Clothes` (`userId`, `type`)
+# VALUES (1, 2);
 
 CREATE TABLE `Suits`
 (
-    `suitId`     INT(11) NOT NULL AUTO_INCREMENT,
-    `userId`      INT(11) NOT NULL,
-    `topId`       INT(11),
-    `bottomId`    INT(11),
-    `onePieceId`  INT(11),
-    `shoesId`     INT(11),
-    `accessoryId` INT(11),
+    `suitId`       INT(11) NOT NULL AUTO_INCREMENT,
+    `userId`       INT(11) NOT NULL,
+    `topId`        INT(11),
+    `bottomId`     INT(11),
+    `outwearId`    INT(11),
+    `shoesId`      INT(11),
+    `accessoryId1` INT(11),
+    `accessoryId2` INT(11),
     PRIMARY KEY (`suitId`),
     FOREIGN KEY (`userId`) REFERENCES `User` (`userId`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
 
-INSERT INTO `Suits` (`userId`, `topId`, `bottomId`, `onePieceId`, `shoesId`, `accessoryId`)
-VALUES (1, 1, 2, null, null, null);
+# INSERT INTO `Suits` (`userId`, `topId`, `bottomId`, `outwearId`, `shoesId`, `accessoryId1`, `accessoryId2`)
+# VALUES (1, 1, 2, null, null, null, null);
 
 
 CREATE INDEX `idx_user_id` ON `Suits` (`userId`);

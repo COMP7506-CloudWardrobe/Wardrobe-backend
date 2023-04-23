@@ -25,10 +25,10 @@ public class SuitServiceImpl implements SuitService {
     }
 
     @Override
-    public Long uploadSuit(Suit suit) {
+    public Suit uploadSuit(Suit suit) {
         System.out.println(suit);
         suitMapper.insertSuit(suit);
-        return suit.getSuitId();
+        return suit;
     }
 
     public Long deleteSuit(Long suitId, Long userId) {

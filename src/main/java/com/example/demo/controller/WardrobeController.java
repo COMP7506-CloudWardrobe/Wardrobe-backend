@@ -44,7 +44,7 @@ public class WardrobeController {
         ClothesWardrobeVO clothesVO = new ClothesWardrobeVO()
                 .setTops(typeClothesList.get(0))
                 .setBottoms(typeClothesList.get((1)))
-                .setOne_pieces(typeClothesList.get(2))
+                .setOutwears(typeClothesList.get(2))
                 .setShoes(typeClothesList.get(3))
                 .setAccessories(typeClothesList.get(4));
         return new ResponseEntity<>(clothesVO, HttpStatus.OK);
@@ -76,27 +76,29 @@ public class WardrobeController {
     }
 
     @PostMapping("/upload_suit")
-    public ResponseEntity<Boolean> uploadSuit(@RequestParam MultipartFile image,
-                                              @RequestParam Long userId,
-                                              @RequestParam(required = false) Long topId,
-                                              @RequestParam(required = false) Long bottomId,
-                                              @RequestParam(required = false) Long onePieceId,
-                                              @RequestParam(required = false) Long shoesId,
-                                              @RequestParam(required = false) Long accessoryId) throws IOException {
+    public ResponseEntity<Suit> uploadSuit(@RequestParam MultipartFile image,
+                                           @RequestParam Long userId,
+                                           @RequestParam(required = false) Long topId,
+                                           @RequestParam(required = false) Long bottomId,
+                                           @RequestParam(required = false) Long outwearId,
+                                           @RequestParam(required = false) Long shoesId,
+                                           @RequestParam(required = false) Long accessoryId1,
+                                           @RequestParam(required = false) Long accessoryId2) throws IOException {
 
-        Long suitId = suitService.uploadSuit(new Suit()
+        Suit newSuit = suitService.uploadSuit(new Suit()
                 .setUserId(userId)
                 .setTopId(topId)
                 .setBottomId(bottomId)
-                .setOnePieceId(onePieceId)
+                .setOutwearId(outwearId)
                 .setShoesId(shoesId)
-                .setAccessoryId(accessoryId));
+                .setAccessoryId1(accessoryId1)
+                .setAccessoryId2(accessoryId2));
         Path path = Paths.get(storageConfig.getBasePath())
                 .resolve(Common.USER + userId)
                 .resolve(Common.SUIT_DIR)
-                .resolve(suitId + Common.JPG);
-        if (imageService.saveImage(path, image)) return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
-        else return new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
+                .resolve(newSuit.getSuitId() + Common.JPG);
+        if (imageService.saveImage(path, image)) return new ResponseEntity<>(newSuit, HttpStatus.OK);
+        else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/delete_suit")

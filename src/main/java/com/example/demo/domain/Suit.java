@@ -3,8 +3,6 @@ package com.example.demo.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @Accessors(chain = true)
 public class Suit {
@@ -12,7 +10,8 @@ public class Suit {
     Long suitId;
     Long topId;
     Long bottomId;
-    Long onePieceId;
+    Long outwearId;
     Long shoesId;
-    Long accessoryId;
+    Long accessoryId1;
+    Long accessoryId2;
 }

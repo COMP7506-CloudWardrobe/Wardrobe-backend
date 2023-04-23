@@ -12,9 +12,9 @@
 
     <insert id="insertSuit" parameterType="com.example.demo.domain.Suit" useGeneratedKeys="true"
             keyProperty="suitId">
-        insert into Suits (userId, topId, bottomId, onePieceId, shoesId, accessoryId)
-        VALUES (#{suit.userId}, #{suit.topId}, #{suit.bottomId}, #{suit.onePieceId}, #{suit.shoesId},
-                #{suit.accessoryId})
+        insert into Suits (userId, topId, bottomId, outwearId, shoesId, accessoryId1, accessoryId2)
+        VALUES (#{suit.userId}, #{suit.topId}, #{suit.bottomId}, #{suit.outwearId}, #{suit.shoesId},
+                #{suit.accessoryId1}, #{suit.accessoryId2})
     </insert>
 
     <delete id="deleteSuit" parameterType="Long">

@@ -9,7 +9,7 @@ import java.util.List;
 public interface SuitService {
     List<Suit> getSuits(Integer id);
 
-    Long uploadSuit(Suit suit);
+    Suit uploadSuit(Suit suit);
 
     Long deleteSuit(Long suitId, Long userId);
 }
