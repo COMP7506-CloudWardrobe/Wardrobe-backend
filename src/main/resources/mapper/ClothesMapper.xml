@@ -8,6 +8,7 @@
         SELECT *
         FROM Clothes
         WHERE userId = #{id}
+        ORDER BY clothesId DESC
     </select>
 
     <insert id="insertClothes" parameterType="com.example.demo.domain.Clothes" useGeneratedKeys="true"

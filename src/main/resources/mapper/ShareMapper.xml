@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ShareMapper">
+
+    <select id="getAll" resultType="com.example.demo.domain.Share">
+        SELECT Share.shareId, Share.suitId, Share.shareTime, User.userId, User.userName
+        FROM Share,
+             User
+        WHERE Share.userId = User.userId
+        ORDER BY shareId DESC
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultType="com.example.demo.domain.Share">
+        SELECT Share.shareId, Share.suitId, Share.shareTime, User.userId, User.userName
+        FROM Share,
+             User
+        WHERE Share.userId = User.userId
+          and Share.userId = #{id}
+        ORDER BY shareId DESC
+
+    </select>
+
+    <select id="findByShareId" parameterType="Long" resultType="com.example.demo.domain.Share">
+        SELECT Share.shareId, Share.suitId, Share.shareTime, User.userId, User.userName
+        FROM Share,
+             User
+        WHERE Share.shareId = #{shareId}
+          and Share.userId = User.userId
+
+    </select>
+
+    <insert id="shareSuit" parameterType="com.example.demo.domain.Share" useGeneratedKeys="true"
+            keyProperty="shareId">
+        insert into Share (userId, suitId)
+        VALUES (#{share.userId}, #{share.suitId})
+    </insert>
+
+    <delete id="deleteShare" parameterType="Long">
+        delete
+        from Share
+        where shareId = ${shareId}
+    </delete>
+
+
+</mapper>

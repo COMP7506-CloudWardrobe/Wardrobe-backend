@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SuitService {
-    List<Suit> getSuits(Integer id);
+    List<Suit> getSuits(Long id);
 
     Suit uploadSuit(Suit suit);
 

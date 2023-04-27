@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface SuitMapper {
 
-    List<Suit> findByUserId(@Param("id") Integer userId);
+    List<Suit> findByUserId(@Param("id") Long userId);
 
     void insertSuit(@Param("suit") Suit suit);
 

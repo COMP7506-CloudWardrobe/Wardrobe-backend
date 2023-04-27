@@ -4,10 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.SuitMapper">
 
-    <select id="findByUserId" parameterType="Integer" resultType="com.example.demo.domain.Suit">
+    <select id="findByUserId" parameterType="Long" resultType="com.example.demo.domain.Suit">
         SELECT *
         FROM Suits
         WHERE userId = #{id}
+        ORDER BY suitId DESC
     </select>
 
     <insert id="insertSuit" parameterType="com.example.demo.domain.Suit" useGeneratedKeys="true"
@@ -23,6 +24,7 @@
         where userId = #{userId}
           and suitId = #{suitId}
     </delete>
+
 
 
 </mapper>

@@ -25,7 +25,7 @@ CREATE TABLE `Clothes`
     `userId`    INT(11)    NOT NULL,
     `type`      TINYINT(1) NOT NULL,
     PRIMARY KEY (`clothesId`),
-    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`)
+    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
@@ -50,7 +50,8 @@ CREATE TABLE `Suits`
     `accessoryId1` INT(11),
     `accessoryId2` INT(11),
     PRIMARY KEY (`suitId`),
-    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`)
+    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`) ON DELETE CASCADE,
+    FOREIGN KEY (`suitId`) REFERENCES `Suits` (`suitId`) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
@@ -61,5 +62,22 @@ CREATE TABLE `Suits`
 
 CREATE INDEX `idx_user_id` ON `Suits` (`userId`);
 
+drop table `Share`;
+CREATE TABLE `Share`
+(
+    `shareId`      INT(11) NOT NULL AUTO_INCREMENT,
+    `userId`       INT(11) NOT NULL,
+    `suitId`       INT(11),
+    `shareTime`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`shareId`),
+    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`),
+    FOREIGN KEY (`suitId`) REFERENCES `Suits` (`suitId`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_bin;
+
+
+CREATE INDEX `idx_user_id` ON `Share` (`userId`);
+CREATE INDEX `idx_suit_id` ON `Share` (`suitId`);
 
 

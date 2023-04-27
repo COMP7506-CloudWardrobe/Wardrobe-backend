@@ -52,7 +52,7 @@ public class WardrobeController {
     }
 
     @GetMapping("/get_all_suits")
-    public ResponseEntity<SuitWardrobeVO> getAllSuits(@RequestParam int id) {
+    public ResponseEntity<SuitWardrobeVO> getAllSuits(@RequestParam Long id) {
         List<Suit> suitList = suitService.getSuits(id);
         return new ResponseEntity<>(new SuitWardrobeVO().setSuitList(suitList), HttpStatus.OK);
     }

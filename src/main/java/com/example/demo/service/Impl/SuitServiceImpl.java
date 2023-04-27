@@ -20,7 +20,7 @@ public class SuitServiceImpl implements SuitService {
     SuitMapper suitMapper;
 
     @Override
-    public List<Suit> getSuits(Integer id) {
+    public List<Suit> getSuits(Long id) {
         return suitMapper.findByUserId(id);
     }
 
