@@ -18,4 +18,5 @@ public class Share {
     private String userName;
     private Long suitId;
     private Date shareTime;
+    private Long heat;
 }

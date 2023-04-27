@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CollectMapper">
+
+    <select id="findByUserId" parameterType="com.example.demo.domain.Share" resultType="java.util.List">
+        SELECT *
+        FROM Collection,
+             Share
+        WHERE Collection.userId = #{id}
+          and Collection.shareId = Share.shareId
+        ORDER BY Share.shareId DESC
+    </select>
+
+    <insert id="collect" parameterType="Long">
+        insert into Collection (userId, shareId)
+        VALUES (#{userId}, #{shareId})
+    </insert>
+
+    <delete id="delete" parameterType="Long">
+        delete
+        from Collection
+        where userid = #{userId}
+          and shareId = #{shareId}
+    </delete>
+
+
+</mapper>

@@ -20,4 +20,8 @@ public interface ShareMapper {
 
     void deleteShare(@Param("shareId") Long id);
 
+    void increaseHeat(@Param("shareId") Long id);
+
+    void decreaseHeat(@Param("shareId") Long id);
+
 }

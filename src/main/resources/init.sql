@@ -62,16 +62,16 @@ CREATE TABLE `Suits`
 
 CREATE INDEX `idx_user_id` ON `Suits` (`userId`);
 
-drop table `Share`;
 CREATE TABLE `Share`
 (
-    `shareId`      INT(11) NOT NULL AUTO_INCREMENT,
-    `userId`       INT(11) NOT NULL,
-    `suitId`       INT(11),
-    `shareTime`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `shareId`   INT(11) NOT NULL AUTO_INCREMENT,
+    `userId`    INT(11) NOT NULL,
+    `suitId`    INT(11),
+    `shareTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `heat`      INT(11)   DEFAULT 0,
     PRIMARY KEY (`shareId`),
-    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`),
-    FOREIGN KEY (`suitId`) REFERENCES `Suits` (`suitId`)
+    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`) ON DELETE CASCADE,
+    FOREIGN KEY (`suitId`) REFERENCES `Suits` (`suitId`) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_bin;
@@ -79,5 +79,17 @@ CREATE TABLE `Share`
 
 CREATE INDEX `idx_user_id` ON `Share` (`userId`);
 CREATE INDEX `idx_suit_id` ON `Share` (`suitId`);
+
+CREATE TABLE `Collection`
+(
+    `userId`    INT(11) NOT NULL,
+    `shareId`   INT(11),
+    `shareTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`userId`, `shareId`),
+    FOREIGN KEY (`userId`) REFERENCES `User` (`userId`) ON DELETE CASCADE,
+    FOREIGN KEY (`shareId`) REFERENCES `Share` (`shareId`) ON DELETE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_bin;
 
 

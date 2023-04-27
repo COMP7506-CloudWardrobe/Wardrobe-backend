@@ -5,7 +5,7 @@
 <mapper namespace="com.example.demo.mapper.ShareMapper">
 
     <select id="getAll" resultType="com.example.demo.domain.Share">
-        SELECT Share.shareId, Share.suitId, Share.shareTime, User.userId, User.userName
+        SELECT User.userName, Share.*
         FROM Share,
              User
         WHERE Share.userId = User.userId
@@ -13,13 +13,12 @@
     </select>
 
     <select id="findByUserId" parameterType="Long" resultType="com.example.demo.domain.Share">
-        SELECT Share.shareId, Share.suitId, Share.shareTime, User.userId, User.userName
+        SELECT User.userName, Share.*
         FROM Share,
              User
         WHERE Share.userId = User.userId
           and Share.userId = #{id}
         ORDER BY shareId DESC
-
     </select>
 
     <select id="findByShareId" parameterType="Long" resultType="com.example.demo.domain.Share">
@@ -42,6 +41,18 @@
         from Share
         where shareId = ${shareId}
     </delete>
+
+    <update id="increaseHeat" parameterType="Long">
+        update Share
+        set heat = heat + 1
+        where shareId = #{shareId}
+    </update>
+
+    <update id="decreaseHeat" parameterType="Long">
+        update Share
+        set heat = heat - 1
+        where shareId = #{shareId}
+    </update>
 
 
 </mapper>
