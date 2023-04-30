@@ -19,6 +19,8 @@ public class CollectServiceImpl implements CollectService {
 
     @Override
     public List<Share> findByUserId(Long userId) {
+        List<Share> res=collectMapper.findByUserId(userId);
+        System.out.println(res);
         return collectMapper.findByUserId(userId);
     }
 

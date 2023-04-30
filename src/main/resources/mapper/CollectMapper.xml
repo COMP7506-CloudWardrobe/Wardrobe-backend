@@ -4,12 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.CollectMapper">
 
-    <select id="findByUserId" parameterType="com.example.demo.domain.Share" resultType="java.util.List">
-        SELECT *
+    <select id="findByUserId" parameterType="Long" resultType="com.example.demo.domain.Share">
+        SELECT Share.*, User.userName
         FROM Collection,
-             Share
+             Share,
+             User
         WHERE Collection.userId = #{id}
           and Collection.shareId = Share.shareId
+          and Share.userId = User.userId
         ORDER BY Share.shareId DESC
     </select>
 

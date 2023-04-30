@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,9 @@ public class CollectController {
 
     @GetMapping("/get_collections")
     public ResponseEntity<ShareListVO> getCollections(@RequestParam Long userId) {
+        System.out.println(userId);
         List<Share> shareList = collectService.findByUserId(userId);
+        shareList = shareList == null ? new ArrayList<>() : shareList;
         return new ResponseEntity<>(new ShareListVO().setShareList(shareList), HttpStatus.OK);
 
     }
